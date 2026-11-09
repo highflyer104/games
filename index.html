@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef0e9">
+  <title>棋境・山水之間，落子成境</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="landscape" aria-hidden="true"><div class="sun"></div><div class="mountain far"></div><div class="mountain middle"></div><div class="mountain near"></div><div class="mist"></div></div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="棋境首頁"><span class="brand-seal">境</span><span>棋境<small>山水之間・落子成境</small></span></a>
+    <div class="top-note">一方棋盤，萬千意境。<span>五子連心・以棋會友</span></div>
+    <button id="sound" class="sound-button" aria-pressed="true">♪ 音效已開</button>
+  </header>
+  <main class="layout">
+    <section class="game-area" aria-label="五子棋遊戲">
+      <div class="intro"><span class="eyebrow">水墨山河 · 方寸對弈</span><h1>靜觀山水，<em>落子有聲。</em></h1><p>在黑白之間，尋一份從容。</p></div>
+      <div class="board-heading"><div class="turn"><span id="turn-dot" class="mini-stone black"></span><span id="turn-text" role="status">輪到你了，請落子</span></div><span class="move-count">第 <b id="move-count">０</b> 手</span></div>
+      <div class="board-scene" id="board-scene"><div class="board-frame" id="board-frame"><div class="board-grid" id="board" role="group" aria-label="十五路五子棋盤"></div><div class="board-mark">棋 境</div></div></div>
+      <div class="board-caption"><span>十五路棋盤</span><span>黑子先行 · 五子連線即勝</span><span id="view-label">山水立體視角</span></div>
+      <div class="game-toolbar"><button id="restart" class="primary">↻ 重新開局</button><button id="undo">↶ 悔棋一步</button><button id="view" aria-pressed="false">◇ 切換俯視</button></div>
+      <p id="notice" class="notice" role="status">執黑先行，從一顆棋子開始。</p>
+    </section>
+    <aside class="sidebar">
+      <section class="panel system-panel"><div class="panel-heading"><h2><span class="section-symbol">◈</span> 系統狀態</h2><span class="live"><i></i>運行中</span></div><div class="status-row"><span>對弈狀態</span><strong id="game-status">等待落子</strong></div><div class="status-row"><span>訊息連線</span><strong id="mqtt-status" class="muted"><i class="status-dot"></i>尚未連線</strong></div><div class="status-row"><span>目前視角</span><strong id="camera-status">山水立體</strong></div><div class="status-row"><span>對局時間</span><strong id="timer">００：００</strong></div></section>
+      <section class="panel opponent-panel"><div class="panel-heading"><h2><span class="section-symbol">♧</span> 對弈設定</h2><span class="small-tag">以棋會友</span></div><label for="opponent">選擇對手</label><div class="segmented"><button id="ai-mode" class="active" aria-pressed="true">◉ 電腦棋友</button><button id="online-mode" aria-pressed="false">◎ 線上棋友</button></div><select id="opponent" aria-label="電腦難度"><option value="beginner">初入棋境 · 第一級・入門</option><option value="easy">竹林棋友 · 第二級・初階</option><option value="normal" selected>山間隱士 · 第三級・標準</option><option value="hard">墨林高手 · 第四級・進階</option><option value="master">山水棋聖 · 第五級・高手</option></select><div class="player-card"><span class="avatar">墨</span><div><strong id="opponent-name">山間隱士</strong><small id="opponent-detail">電腦棋友 · 執白後行</small></div><span class="player-online" id="player-online">就緒</span></div><div id="room-controls" hidden><label for="room">棋室房號</label><div class="input-row"><input id="room" maxlength="24" placeholder="輸入相同房號相約" autocomplete="off"><button id="connect" class="primary">加入</button></div><p class="hint">先加入者執黑，後加入者執白。房號請使用中文、字母或數字。</p><button id="leave" class="text-button" disabled>離開棋室</button></div><div class="your-side"><span><i class="mini-stone black" id="my-stone"></i> 你執<span id="my-color">黑</span></span><span id="mode-caption">人機對弈</span></div></section>
+      <section class="panel chat-panel"><div class="panel-heading"><h2><span class="section-symbol">☷</span> 棋間小語</h2><span id="chat-badge" class="small-tag">靜候棋友</span></div><div class="messages" id="messages" role="log" aria-label="棋室聊天訊息" aria-live="polite"><div class="chat-system">一局棋，一場相逢。</div><div class="chat-bubble"><span class="chat-author">棋境小箋</span><p>歡迎入境。切換「線上棋友」，與朋友加入相同房號，就能對弈與聊天。</p></div></div><form id="chat-form"><input id="chat-input" maxlength="200" placeholder="連線後，與棋友聊聊…" aria-label="聊天訊息" disabled><button type="submit" id="chat-send" aria-label="傳送訊息" disabled>↑</button></form><p class="chat-foot">公共訊息棋室 · 請勿傳送私人資訊</p></section>
+    </aside>
+  </main>
+  <footer><span class="footer-seal">棋</span> 勝負之外，自有山水。<span class="footer-right">一念落子 · 滿盤生花</span></footer>
+  <dialog id="request-dialog"><h2 id="request-title">棋友邀請</h2><p id="request-message"></p><div class="dialog-actions"><button id="decline">婉拒</button><button id="accept" class="primary">同意</button></div></dialog>
+</body>
+</html>
